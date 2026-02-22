@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: product-info
+server:
+  port: 8082
+
+

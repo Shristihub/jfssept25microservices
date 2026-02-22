@@ -29,8 +29,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/catalog-service/v1")
 @RequiredArgsConstructor
 @RefreshScope
-@Profile("dev")
-public class ProductController {
+@Profile("prod")
+public class ProductController1 {
 
 	private final IProductService productService;
 	
@@ -42,7 +42,7 @@ public class ProductController {
 	// http://localhost:8081/catalog-service/v1/show
 	@GetMapping("/show")
 	public String showMessage() {
-		return message;
+		return "Great day "+message;
 	}
 	
 	// http://localhost:8081/catalog-service/v1/show
@@ -106,7 +106,6 @@ public class ProductController {
 		List<ProductDto> products = productService.getByCategory(categoryname);
 		return ResponseEntity.ok(products);
 	}
-	
 	ResponseEntity<List<ProductDto>> getByBrandAndPayType(String brand,String payment) {
 		return null;
 	}

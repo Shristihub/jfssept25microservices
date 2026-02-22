@@ -24,8 +24,7 @@ server:
 management:
   endpoints:
     web:
-      base-path: /custom 
-      exposure:
+     exposure:
        include: '*'
   endpoint:
     health:

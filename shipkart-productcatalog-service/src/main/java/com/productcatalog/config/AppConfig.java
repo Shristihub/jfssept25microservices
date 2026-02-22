@@ -1,6 +1,7 @@
 package com.productcatalog.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
