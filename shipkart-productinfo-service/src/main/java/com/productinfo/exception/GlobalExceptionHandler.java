@@ -2,7 +2,6 @@ package com.productinfo.exception;
 
 import java.time.LocalDateTime;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ import com.productinfo.model.ApiErrors;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@Override
-	protected @Nullable ResponseEntity<Object> handleHttpRequestMethodNotSupported(
+	protected  ResponseEntity<Object> handleHttpRequestMethodNotSupported(
 			HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 //		LocalDateTime timestamp = LocalDateTime.now();
 //		String exception = ex.getMessage();
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-	protected @Nullable ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,
+	protected  ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		String errorMessage = HttpStatus.UNSUPPORTED_MEDIA_TYPE.name();
 
@@ -52,7 +51,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-	protected @Nullable ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex,
+	protected  ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		String errorMessage = HttpStatus.valueOf(ex.getStatusCode().value()).name();
 
@@ -65,7 +64,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-	protected @Nullable ResponseEntity<Object> handleMissingServletRequestParameter(
+	protected  ResponseEntity<Object> handleMissingServletRequestParameter(
 			MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status,
 			WebRequest request) {
 		String errorMessage = HttpStatus.BAD_REQUEST.name();
@@ -80,7 +79,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-	protected @Nullable ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
+	protected  ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
 			HttpStatusCode status, WebRequest request) {
 		String errorMessage = ex.getErrorCode();
 

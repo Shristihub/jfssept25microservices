@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,14 +52,13 @@ public class ProductController {
 			return courses.getCourses();
 		}
 
-	// http://localhost:8081/catalog-service/v1/products
+	// http://localhost:8081/catalog-service/v1/admin/products
 	@PostMapping( "/admin/products")
 	ResponseEntity<Void> addProduct(@RequestBody ProductDto productDto) {
-//		productService.addProduct(productDto);
+		productService.addProduct(productDto);
 //		//wrap it in ResponseEntity<Void>
 ////		this returns the status as created and no body
-//		return ResponseEntity.status(HttpStatus.CREATED.value()).build();
-		return null;
+		return ResponseEntity.status(HttpStatus.CREATED.value()).build();
 	}
 
 	// http://localhost:8081/catalog-service/v1/products
@@ -106,21 +106,40 @@ public class ProductController {
 		List<ProductDto> products = productService.getByCategory(categoryname);
 		return ResponseEntity.ok(products);
 	}
+//	http://localhost:8081/catalog-service/v1/products/brand/Samsung/payment/UPI
+	@GetMapping("/products/brand/{brand}/payment/{payment}")
+	ResponseEntity<List<ProductDto>> getByBrandAndPayType(@PathVariable String brand,@PathVariable String payment) {
+		List<ProductDto> products = productService.getByBrandAndPayType(brand, payment);
+		return ResponseEntity.ok(products);
+	}
 	
-	ResponseEntity<List<ProductDto>> getByBrandAndPayType(String brand,String payment) {
-		return null;
+//	http://localhost:8081/catalog-service/v1/products/color/red
+	@GetMapping("/products/color/{color}")
+	ResponseEntity<List<ProductDto>> getByColor(@PathVariable String color) {
+		List<ProductDto> products = productService.getByColor(color);
+		return ResponseEntity.ok(products);
 	}
-	ResponseEntity<List<ProductDto>> getByColor(String color) {
-		return null;
+	
+//	http://localhost:8081/catalog-service/v1/products/category/Sports/delivery/prime
+	@GetMapping("/products/category/{category}/delivery/{delivery}")
+	ResponseEntity<List<ProductDto>> getByCategoryAndDelivery(@PathVariable String category,
+			                                                 @PathVariable String delivery){
+		List<ProductDto> products = productService.getByCategoryAndDelivery(category, delivery);
+		return ResponseEntity.ok(products);
 	}
-	ResponseEntity<List<ProductDto>> getByCategoryAndDelivery(String category,String delivery){
-		return null;
+	
+//	http://localhost:8081/catalog-service/v1/products/name/bottle
+	@GetMapping("/products/name/{name}")
+	ResponseEntity<List<ProductDto>> getByNameContains(@PathVariable String name){
+		List<ProductDto> products = productService.getByNameContains(name);
+		return ResponseEntity.ok(products);
 	}
-	ResponseEntity<List<ProductDto>> getByNameContains(String name){
-		return null;
-	}
-	ResponseEntity<List<ProductDto>> getByNameOffers(String name,String offers){
-		return null;
+	
+//	http://localhost:8081/catalog-service/v1/products/name/bag/offers/CASH BACK
+	@GetMapping("/products/name/{name}/offers/{offers}")
+	ResponseEntity<List<ProductDto>> getByNameOffers(@PathVariable String name,@PathVariable String offers){
+		List<ProductDto> products = productService.getByNameOffers(name, offers);
+		return ResponseEntity.ok(products);
 	}
 }
 

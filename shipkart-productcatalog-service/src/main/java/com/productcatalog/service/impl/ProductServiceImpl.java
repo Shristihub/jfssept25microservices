@@ -76,32 +76,46 @@ public class ProductServiceImpl implements IProductService {
 
 	@Override
 	public List<ProductDto> getByBrandAndPayType(String brand, String payment) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productRepository.findByBrandAndPayType(brand, payment);
+		System.out.println(products);
+		if(products.isEmpty())
+			throw new ProductNotFoundException("product with this category not found");
+		return products.stream().map(product -> productMapper.converttoDto(product)).toList();
 	}
-
 	@Override
 	public List<ProductDto> getByColor(String color) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productRepository.findByColor(color);
+		System.out.println(products);
+		if(products.isEmpty())
+			throw new ProductNotFoundException("product with this category not found");
+		return products.stream().map(product -> productMapper.converttoDto(product)).toList();
 	}
 
 	@Override
 	public List<ProductDto> getByCategoryAndDelivery(String category, String delivery) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productRepository.findByCategoryAndDelivery(category,delivery);
+		System.out.println(products);
+		if(products.isEmpty())
+			throw new ProductNotFoundException("product with this category not found");
+		return products.stream().map(product -> productMapper.converttoDto(product)).toList();
 	}
 
 	@Override
-	public List<ProductDto> getByNameContains(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductDto> getByNameContains(String choice) {
+		List<Product> products = productRepository.findByNameContains("%"+choice+"%");
+		System.out.println(products);
+		if(products.isEmpty())
+			throw new ProductNotFoundException("product with this category not found");
+		return products.stream().map(product -> productMapper.converttoDto(product)).toList();
 	}
 
 	@Override
 	public List<ProductDto> getByNameOffers(String name, String offers) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productRepository.findByNameOffers(name, offers);
+		System.out.println(products);
+		if(products.isEmpty())
+			throw new ProductNotFoundException("product with this category not found");
+		return products.stream().map(product -> productMapper.converttoDto(product)).toList();
 	}
 
 }

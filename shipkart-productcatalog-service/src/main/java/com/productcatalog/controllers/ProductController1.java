@@ -25,7 +25,7 @@ import com.productcatalog.web.ICourses;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController
+//@RestController
 @RequestMapping("/catalog-service/v1")
 @RequiredArgsConstructor
 @RefreshScope

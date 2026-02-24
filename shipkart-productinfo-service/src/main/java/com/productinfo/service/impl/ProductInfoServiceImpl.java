@@ -11,14 +11,14 @@ import com.productinfo.exception.ProductNotFoundException;
 import com.productinfo.model.Product;
 import com.productinfo.service.IProductInfoService;
 
-@Service
+//@Service
 public class ProductInfoServiceImpl implements IProductInfoService {
 	
 	private RestClient restClient;
 	
-	public ProductInfoServiceImpl(RestClient.Builder restClientBuilder) {
+	public ProductInfoServiceImpl(RestClient restClient) {
 		super();
-		this.restClient = restClientBuilder.build();
+		this.restClient = restClient;
 	}
 
 	//pass the uri fo the microservice
