@@ -14,6 +14,9 @@ public class AppConfig {
 //	but if that bean is @LoadBalanced, every HTTP call 
 //	including http://localhost:8761/eureka gets routed through the load balancer,
 //	which looks up localhost as a service name in Eureka — which doesn't exist.
+	
+//	Your service sees @Qualifier("loadBalancedBuilder")
+//	uses the load balanced one for service-to-service call
 
 	@Bean
 	@LoadBalanced
