@@ -2,6 +2,8 @@ package com.productinfo.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,14 +13,14 @@ import com.productinfo.exception.ProductNotFoundException;
 import com.productinfo.model.Product;
 import com.productinfo.service.IProductInfoService;
 
-//@Service
+@Service
 public class ProductInfoServiceImpl implements IProductInfoService {
 	
 	private RestClient restClient;
 	
-	public ProductInfoServiceImpl(RestClient restClient) {
+	public ProductInfoServiceImpl(@Qualifier("loadbalancedBuilder")  @Lazy RestClient.Builder restClientBuilder) {
 		super();
-		this.restClient = restClient;
+		this.restClient = restClientBuilder.build();
 	}
 
 	//pass the uri fo the microservice

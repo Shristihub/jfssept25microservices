@@ -13,7 +13,7 @@ import com.productinfo.feign.IProductInfoFeignClient;
 import com.productinfo.model.Product;
 import com.productinfo.service.IProductInfoService;
 
-@Service
+//@Service
 public class ProductInfoLoadBalancerServiceImpl implements IProductInfoService {
 
 	@Autowired
