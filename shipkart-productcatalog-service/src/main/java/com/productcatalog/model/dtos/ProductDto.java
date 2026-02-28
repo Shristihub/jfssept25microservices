@@ -25,6 +25,8 @@ public class ProductDto {
 	private BrandDto brand;
 	private List<String> deliveryTypes;
 	private List<String> paymentModes;
+	
+	private int stock;
 }
 
 

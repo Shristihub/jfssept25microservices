@@ -25,7 +25,7 @@ public class AppConfig {
 	}
 
 	@Bean
-	 @Primary
+	@Primary
 	RestClient.Builder builder() {
 		return RestClient.builder();
 	}

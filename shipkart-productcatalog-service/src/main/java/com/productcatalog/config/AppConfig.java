@@ -5,6 +5,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.web.client.RestClient;
 
 import com.productcatalog.web.Backend;
 import com.productcatalog.web.Frontend;
@@ -12,7 +13,7 @@ import com.productcatalog.web.ICourses;
 
 @Configuration
 public class AppConfig {
-
+	
 	@Bean
 	ModelMapper mapper() {
 		return new ModelMapper();
@@ -29,6 +30,7 @@ public class AppConfig {
 	ICourses getFrontend() {
 		return new Frontend();
 	}
+	
 	
 	
 }

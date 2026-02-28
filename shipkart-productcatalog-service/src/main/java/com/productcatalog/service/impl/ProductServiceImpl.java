@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.productcatalog.exception.ProductNotFoundException;
+import com.productcatalog.feign.IInventoryFeignClient;
 import com.productcatalog.model.dtos.ProductDto;
 import com.productcatalog.model.entities.Product;
 import com.productcatalog.repository.IProductRepository;
@@ -22,12 +23,16 @@ public class ProductServiceImpl implements IProductService {
 
 	private final IProductRepository productRepository;
 	private final ProductMapper productMapper;
+	private final IInventoryFeignClient feignClient;
 
 	@Override
 	public void addProduct(ProductDto productDto) {
 		Product product = productMapper.converttoEntity(productDto);
-		productRepository.save(product);
-
+		Product savedProduct = productRepository.save(product);
+		int productId = savedProduct.getProductId();
+		int stock = productDto.getStock();
+        String status = feignClient.addStock(productId, stock);
+        System.out.println(status);
 	}
 
 	@Override

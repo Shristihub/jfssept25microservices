@@ -12,7 +12,7 @@ import com.productinfo.model.Product;
 
 
 @FeignClient(name = "product-catalog")
-public interface IProductInfoFeignClient {
+public interface IProductCatalogFeignClient {
 	
 //	http://localhost:8081/catalog-service/v1/products
 	@GetMapping("/catalog-service/v1/products")

@@ -9,7 +9,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 
 import com.productinfo.exception.ProductNotFoundException;
-import com.productinfo.feign.IProductInfoFeignClient;
+import com.productinfo.feign.IProductCatalogFeignClient;
 import com.productinfo.model.Product;
 import com.productinfo.service.IProductInfoService;
 
@@ -17,7 +17,7 @@ import com.productinfo.service.IProductInfoService;
 public class ProductInfoLoadBalancerServiceImpl implements IProductInfoService {
 
 	@Autowired
-	private IProductInfoFeignClient feignClient;
+	private IProductCatalogFeignClient feignClient;
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 	// select the interface not the class
