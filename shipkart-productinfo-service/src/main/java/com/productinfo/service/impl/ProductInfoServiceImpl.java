@@ -13,7 +13,7 @@ import com.productinfo.exception.ProductNotFoundException;
 import com.productinfo.model.Product;
 import com.productinfo.service.IProductInfoService;
 
-@Service
+//@Service
 public class ProductInfoServiceImpl implements IProductInfoService {
 	
 	private RestClient restClient;

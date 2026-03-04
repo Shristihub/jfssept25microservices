@@ -14,18 +14,22 @@ import com.productcart.model.CartItem;
 import com.productcart.model.Product;
 import com.productcart.repository.ICartRepository;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements ICartService {
 
+
 	private final ICartRepository repository;
 	private final IProductInfoClient infoClient;
 	private final ModelMapper mapper;
 
+
 	@Override
-	public void addToCart(int userId, int productId, int quantity) {
+	@CircuitBreaker(name = "cartService",fallbackMethod = "fallbackAddToCart")
+	public CartDto addToCart(int userId, int productId, int quantity) {
 		// check if the user with this id is available in the cart table
 		// if yes get the cart from the table
 		Cart cart = repository.findByUserId(userId)
@@ -85,8 +89,17 @@ public class CartServiceImpl implements ICartService {
 		// save it to the database;
 		System.out.println();
 		System.out.println(cart);
-		repository.save(cart);
+		Cart savedCart = repository.save(cart);
+		return mapper.map(savedCart, CartDto.class);
 	}
+	
+//	  CartItem createCartItem()
+	
+	public CartDto fallbackAddToCart(Exception e) {
+		System.out.println("exception occured "+e);
+		return new CartDto();
+	}
+	
 
 	@Override
 	public CartDto viewCart(int userId) {

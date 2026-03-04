@@ -1,6 +1,5 @@
 package com.productcart.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.productcart.model.Cart;
 import com.productcart.model.CartDto;
 import com.productcart.service.ICartService;
 
@@ -26,9 +24,9 @@ public class CartController {
 	//addToCart
 	// http://localhost:8085/cart-service/v1/cart/add?userId=1&productId=1&quantity=2
 	@PostMapping("/cart/add")
-	ResponseEntity<Void> addToCart(@RequestParam int userId,@RequestParam int productId,@RequestParam int quantity){
-		cartService.addToCart(userId, productId, quantity);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+	ResponseEntity<CartDto> addToCart(@RequestParam int userId,@RequestParam int productId,@RequestParam int quantity){
+		CartDto cartDto = cartService.addToCart(userId, productId, quantity);
+		return ResponseEntity.status(HttpStatus.CREATED).body(cartDto);
 	}
 	//viewCart
 	@GetMapping("/cart/view/userId/{userId}")
