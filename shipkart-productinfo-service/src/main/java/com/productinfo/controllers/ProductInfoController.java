@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.productinfo.model.Product;
+import com.productinfo.model.Type;
 import com.productinfo.service.IProductInfoService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,9 +31,9 @@ public class ProductInfoController {
 	
 	// http://localhost:8082/info-service/v1/products/productId/1
 	@GetMapping("/products/productId/{productId}")
-	ResponseEntity<Product> viewById(@PathVariable int productId) {
-		Product product = productService.getById(productId);
-		return ResponseEntity.ok(product);
+	ResponseEntity<Type> viewById(@PathVariable int productId) {
+		Type result = productService.getById(productId);
+		return ResponseEntity.ok(result);
 	}
 	
 	// http://localhost:8082/info-service/v1/products/category/bags

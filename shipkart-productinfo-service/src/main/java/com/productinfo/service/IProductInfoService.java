@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.productinfo.exception.ProductNotFoundException;
 import com.productinfo.model.Product;
+import com.productinfo.model.Type;
 
 public interface IProductInfoService {
 	
 	List<Product> getAll();
-	Product getById(int productId) throws ProductNotFoundException;
+	Type getById(int productId) throws ProductNotFoundException;
 	
 	
 	List<Product> getByCategory(String category) throws ProductNotFoundException;

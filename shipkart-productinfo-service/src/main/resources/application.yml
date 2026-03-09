@@ -16,8 +16,8 @@ management:
     health:
       show-details: always
   health:
-    circuitbreakers:
-      enabled: true
+   circuitbreakers:
+    enabled: true
 
    
 #configuration for resilence
@@ -34,12 +34,13 @@ resilience4j:
        sliding-window-size: 10
        register-health-indicator: true
        recordExceptions:
-        - java.io.IOException
+        - feign.FeignException
+        - feign.FeignException$ServiceUnavailable
+        - org.springframework.web.client.RestClientException
         - java.net.ConnectException
-        - java.lang.IllegalStateException
-        - org.springframework.web.client.HttpServerErrorException
-        - org.springframework.web.client.ResourceAccessException
-        - org.apache.hc.client5.http.HttpHostConnectException
+        - java.io.IOException
+        - java.lang.Exception 
+
 
 
 

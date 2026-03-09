@@ -13,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Product {
+public class Product implements Type{
 	
 	private String productName;
 	private Integer productId;

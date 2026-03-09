@@ -34,5 +34,6 @@ resilience4j:
        - feign.FeignException
        - org.springframework.web.client.RestClientException
        - java.io.IOException
+       - java.lang.Exception 
 
 
